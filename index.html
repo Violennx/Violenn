@@ -101,7 +101,7 @@
         
         const code = document.getElementById("unique-code-input").value;
 
-        fetch("https://backend-phi-ruby.vercel.app/", { // Hubungkan ke backend
+        fetch("https://backend-phi-ruby.vercel.app/api/redeem", {  // Hubungkan ke backend
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
