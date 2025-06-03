@@ -470,18 +470,11 @@
             }
         });
 
-        // Validate Code Function
+        // Validate Code Function - SAMA PERSIS DENGAN ASLI
         function validateCode(event) {
             event.preventDefault();
             
             const code = document.getElementById("unique-code-input").value;
-            const submitBtn = document.getElementById("submit-btn");
-            const btnText = submitBtn.querySelector('span');
-            
-            // Add loading state
-            submitBtn.classList.add('loading');
-            btnText.textContent = 'Memvalidasi...';
-            submitBtn.disabled = true;
 
             fetch("https://backend-phi-ruby.vercel.app/", {
                 method: "POST",
@@ -498,25 +491,15 @@
                 }
             })
             .then(message => {
-                // Success - langsung pindah tanpa delay
-                showModal('success', 'Kode Valid! 🎉', message);
+                // Ini cuma jalan kalau response.ok = true (kode valid)
+                showModal('success', 'Berhasil!', message);
                 document.getElementById("form-container").style.display = "none";
                 document.getElementById("generate-container").style.display = "block";
-                
-                // Tutup modal setelah 1.5 detik
-                setTimeout(() => {
-                    closeModal();
-                }, 1500);
             })
             .catch(error => {
-                // Error
-                showModal('error', 'Kode Tidak Valid! ❌', error.message);
-            })
-            .finally(() => {
-                // Remove loading state
-                submitBtn.classList.remove('loading');
-                btnText.textContent = 'Validasi Kode';
-                submitBtn.disabled = false;
+                // Ini jalan kalau kode invalid
+                showModal('error', 'Gagal!', error.message);
+                // TIDAK lanjut ke halaman berikutnya
             });
         }
 
