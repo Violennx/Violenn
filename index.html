@@ -101,22 +101,30 @@
     
     const code = document.getElementById("unique-code-input").value;
 
-    fetch("https://backend-phi-ruby.vercel.app/api/redeem", {
+    fetch("https://backend-phi-ruby.vercel.app/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ code: code }) // ✅ Ubah dari 'token' ke 'code'
+        body: JSON.stringify({ token: code })
     })
-    .then(response => response.json()) // ✅ Ubah dari text() ke json()
-    .then(data => {
-        alert(data.message); // ✅ Akses property message
+    .then(response => {
+        if (response.ok) {
+            return response.text();
+        } else {
+            throw new Error("Kode unik tidak valid atau sudah digunakan.");
+        }
+    })
+    .then(message => {
+        // Ini cuma jalan kalau response.ok = true (kode valid)
+        alert(message);
         document.getElementById("form-container").style.display = "none";
         document.getElementById("generate-container").style.display = "block";
     })
     .catch(error => {
-        console.error('Error:', error);
-        alert("Terjadi kesalahan saat validasi kode.");
+        // Ini jalan kalau kode invalid
+        alert(error.message);
+        // TIDAK lanjut ke halaman berikutnya
     });
 }
 </script>
