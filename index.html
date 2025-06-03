@@ -498,14 +498,15 @@
                 }
             })
             .then(message => {
-                // Success
+                // Success - langsung pindah tanpa delay
                 showModal('success', 'Kode Valid! 🎉', message);
+                document.getElementById("form-container").style.display = "none";
+                document.getElementById("generate-container").style.display = "block";
                 
+                // Tutup modal setelah 1.5 detik
                 setTimeout(() => {
-                    document.getElementById("form-container").style.display = "none";
-                    document.getElementById("generate-container").classList.add("show");
                     closeModal();
-                }, 2000);
+                }, 1500);
             })
             .catch(error => {
                 // Error
