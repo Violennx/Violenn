@@ -37,6 +37,20 @@
             z-index: -1;
         }
 
+        /* Corner Text - Fixed positioning */
+        .corner-text {
+            position: fixed;
+            bottom: 15px;
+            left: 15px;
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.8);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            pointer-events: none;
+            user-select: none;
+        }
+
         /* Floating particles */
         .particle {
             position: absolute;
@@ -64,6 +78,7 @@
             width: 90%;
             position: relative;
             transition: all 0.3s ease;
+            z-index: 10;
         }
 
         .main-container:hover {
@@ -390,14 +405,12 @@
                 padding: 12px 30px;
                 font-size: 14px;
             }
-        }
 
-        .corner-text {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            font-size: 16px;
-            font-weight: bold;
+            .corner-text {
+                font-size: 12px;
+                bottom: 10px;
+                left: 10px;
+            }
         }
     </style>
 </head>
